@@ -3,10 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PortFolio Web3</title>
+  <title>Alex - Développeur Web3</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    header h1 { font-size: 3rem; margin-bottom: 20px; }
+    header p { font-size: 1.2rem; opacity: 0.9; }
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+    h2 { font-size: 2.5rem; margin-bottom: 40px; }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .project {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      transition: transform 0.3s;
+    }
+    .project:hover { transform: translateY(-5px); border-color: #667eea; }
+    .project h3 { margin-bottom: 15px; color: #667eea; }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #333;
+      opacity: 0.6;
+    }
+    a { color: #667eea; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-  <h1>Mon PortFolio Web3</h1>
-  <p>Bienvenue sur mon site</p>
+  <header>
+    <h1>Alex</h1>
+    <p>Développeur Web3 & Blockchain</p>
+  </header>
+
+  <section>
+    <h2>À propos</h2>
+    <p>
+      Je construis des applications décentralisées sur Ethereum, Solana et autres L2. 
+      Passionné par la DeFi, les NFT et le futur du web.
+    </p>
+  </section>
+
+  <section>
+    <h2>Projets</h2>
+    <div class="projects">
+      <div class="project">
+        <h3>Projet 1</h3>
+        <p>Description de ton premier projet Web3. Smart contracts, frontend, etc.</p>
+      </div>
+      <div class="project">
+        <h3>Projet 2</h3>
+        <p>Description de ton deuxième projet. Remplace ce texte.</p>
+      </div>
+      <div class="project">
+        <h3>Projet 3</h3>
+        <p>Description de ton troisième projet. Remplace ce texte.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>
+      <a href="https://twitter.com" target="_blank">Twitter</a> · 
+      <a href="https://github.com" target="_blank">GitHub</a> · 
+      <a href="mailto:ton@email.com">Email</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2026 Alex - Portfolio Web3</p>
+  </footer>
 </body>
 </html>
