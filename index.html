@@ -3,95 +3,172 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alex - Développeur Web3</title>
+  <title>Portfolio Web3</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-      line-height: 1.6;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 20px;
     }
-    header {
-      padding: 100px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    header h1 { font-size: 3rem; margin-bottom: 20px; }
-    header p { font-size: 1.2rem; opacity: 0.9; }
-    section {
+ .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 80px 20px;
+      padding: 40px 20px;
     }
-    h2 { font-size: 2.5rem; margin-bottom: 40px; }
-    .projects {
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+ .subtitle {
+      color: #94a3b8;
+      font-size: 1.2rem;
+    }
+ .connect-btn,.verify-btn {
+      background: linear-gradient(90deg, #6366f1, #8b5cf6);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: transform 0.2s;
+    }
+ .connect-btn:hover,.verify-btn:hover { transform: scale(1.05); }
+ .verify-btn {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      display: none;
+    }
+    #wallet-address, #verify-status {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+ .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      gap: 20px;
+      margin-top: 60px;
     }
-    .project {
-      background: #1a1a1a;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid #333;
-      transition: transform 0.3s;
+ .card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      transition: border 0.3s;
     }
-    .project:hover { transform: translateY(-5px); border-color: #667eea; }
-    .project h3 { margin-bottom: 15px; color: #667eea; }
+ .card:hover { border-color: rgba(99, 102, 241, 0.5); }
+ .card h3 {
+      color: #60a5fa;
+      margin-bottom: 10px;
+    }
+ .card p { color: #94a3b8; line-height: 1.6; }
     footer {
       text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid #333;
-      opacity: 0.6;
+      margin-top: 80px;
+      color: #64748b;
     }
-    a { color: #667eea; text-decoration: none; }
-    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Alex</h1>
-    <p>Développeur Web3 & Blockchain</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Portfolio Web3</h1>
+      <p class="subtitle">Développeur Blockchain</p>
+      <button class="connect-btn" id="connectBtn">Connecter Wallet</button>
+      <button class="verify-btn" id="verifyBtn">Vérifier mon Wallet</button>
+      <div id="wallet-address"></div>
+      <div id="verify-status"></div>
+    </header>
 
-  <section>
-    <h2>À propos</h2>
-    <p>
-      Je construis des applications décentralisées sur Ethereum, Solana et autres L2. 
-      Passionné par la DeFi, les NFT et le futur du web.
-    </p>
-  </section>
-
-  <section>
-    <h2>Projets</h2>
-    <div class="projects">
-      <div class="project">
+    <div class="grid">
+      <div class="card">
         <h3>Projet 1</h3>
-        <p>Description de ton premier projet Web3. Smart contracts, frontend, etc.</p>
+        <p>Description de ton projet ici.</p>
       </div>
-      <div class="project">
+      <div class="card">
         <h3>Projet 2</h3>
-        <p>Description de ton deuxième projet. Remplace ce texte.</p>
+        <p>Explique ce que t’as build.</p>
       </div>
-      <div class="project">
+      <div class="card">
         <h3>Projet 3</h3>
-        <p>Description de ton troisième projet. Remplace ce texte.</p>
+        <p>Ajoute un lien vers ton GitHub.</p>
       </div>
     </div>
-  </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>
-      <a href="https://twitter.com" target="_blank">Twitter</a> · 
-      <a href="https://github.com" target="_blank">GitHub</a> · 
-      <a href="mailto:ton@email.com">Email</a>
-    </p>
-  </section>
+    <footer>
+      <p>© 2025 Portfolio Web3</p>
+    </footer>
+  </div>
 
-  <footer>
-    <p>© 2026 Alex - Portfolio Web3</p>
-  </footer>
+  <script type="importmap">
+    {
+      "imports": {
+        "ethers": "https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.esm.min.js",
+        "@walletconnect/web3-provider": "https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { ethers } from 'ethers';
+    import WalletConnectProvider from '@walletconnect/web3-provider';
+
+    const connectBtn = document.getElementById('connectBtn');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const walletAddress = document.getElementById('wallet-address');
+    const verifyStatus = document.getElementById('verify-status');
+    let signer;
+
+    connectBtn.onclick = async () => {
+      try {
+        let provider;
+        if (window.ethereum) {
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          await provider.send("eth_requestAccounts", []);
+        } else {
+          const wcProvider = new WalletConnectProvider({
+            infuraId: "27e484dcd9e3efcfd25a83a7875851ad"
+          });
+          await wcProvider.enable();
+          provider = new ethers.providers.Web3Provider(wcProvider);
+        }
+
+        signer = provider.getSigner();
+        const addr = await signer.getAddress();
+        walletAddress.innerText = "Connecté: " + addr.slice(0,6) + "..." + addr.slice(-4);
+        connectBtn.innerText = "Wallet Connecté";
+        verifyBtn.style.display = "inline-block";
+      } catch (err) {
+        console.log(err);
+        alert("Connexion annulée");
+      }
+    };
+
+    verifyBtn.onclick = async () => {
+      try {
+        const message = "Je vérifie mon Portfolio Web3 - " + new Date().toISOString().split('T')[0];
+        const signature = await signer.signMessage(message);
+        verifyStatus.innerText = "✓ Vérifié avec succès";
+        verifyStatus.style.color = "#22c55e";
+        verifyBtn.innerText = "Vérifié";
+        verifyBtn.disabled = true;
+      } catch (err) {
+        verifyStatus.innerText = "✗ Vérification annulée";
+        verifyStatus.style.color = "#ef4444";
+      }
+    };
+  </script>
 </body>
 </html>
