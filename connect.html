@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Wallet - Portfolio Web3</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="projects.html">Projets</a>
+    <a href="connect.html">Connect Wallet</a>
+  </nav>
+
+  <section class="center">
+    <h2>Connecte ton Wallet</h2>
+    <button id="connectBtn">Connect MetaMask</button>
+    <p id="walletAddress"></p>
+    <p id="walletBalance"></p>
+  </section>
+
+  <section class="center">
+    <h2>Lire un Smart Contract</h2>
+    <input id="contractAddr" placeholder="Adresse du contrat 0x..." style="padding:10px;width:400px;max-width:90%;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;">
+    <br><br>
+    <button id="readBtn">Lire la valeur</button>
+    <p id="contractResult"></p>
+  </section>
+
+  <script>
+    let signer;
+    document.getElementById('connectBtn').onclick = async () => {
+      if (typeof window.ethereum === 'undefined') {
+        alert('Installe MetaMask!');
+        return;
+      }
+      try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const accounts = await provider.send('eth_requestAccounts', []);
+        signer = await provider.getSigner();
+        const address = accounts[0];
+        document.getElementById('walletAddress').textContent = 'Adresse : ' + address;
+        document.getElementById('connectBtn').textContent = 'Connecté ✓';
+        document.getElementById('connectBtn').disabled = true;
+        const balance = await provider.getBalance(address);
+        const ethBalance = ethers.formatEther(balance);
+        document.getElementById('walletBalance').textContent = 'Solde : ' + parseFloat(ethBalance).toFixed(4) + ' ETH';
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    document.getElementById('readBtn').onclick = async () => {
+      if (!signer) {
+        alert('Connecte ton wallet d’abord');
+        return;
+      }
+      const contractAddress = document.getElementById('contractAddr').value;
+      if (!contractAddress) {
+        alert('Colle une adresse de contrat');
+        return;
+      }
+      try {
+        const abi = ["function getNumber() view returns (uint256)"];
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        const result = await contract.getNumber();
+        document.getElementById('contractResult').textContent = 'Résultat : ' + result.toString();
+      } catch (err) {
+        document.getElementById('contractResult').textContent = 'Erreur : ' + err.message;
+        console.error(err);
+      }
+    };
+  </script>
+</body>
+</html>
