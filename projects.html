@@ -3,28 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projets - Portfolio Web3</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Projets - TonNom</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0f0f0f;
+      color: #e5e5e5;
+      line-height: 1.6;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 10%;
+      border-bottom: 1px solid #222;
+    }
+    nav a { color: #e5e5e5; text-decoration: none; margin-left: 30px; }
+    nav a:hover { color: #6366f1; }
+    section { padding: 100px 10%; }
+    h1 { font-size: 3rem; margin-bottom: 20px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #2a2a2a;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); border-color: #6366f1; }
+    .card h3 { margin-bottom: 15px; color: #6366f1; }
+    .card a {
+      color: #6366f1;
+      text-decoration: none;
+      margin-right: 15px;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 60px 10%;
+      border-top: 1px solid #222;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
   <nav>
-    <a href="index.html">Accueil</a>
-    <a href="projects.html">Projets</a>
-    <a href="connect.html">Connect Wallet</a>
+    <div><a href="index.html" style="color:#e5e5e5;text-decoration:none;">TonNom.eth</a></div>
+    <div>
+      <a href="index.html#about">À propos</a>
+      <a href="projects.html">Projets</a>
+      <a href="connect.html">Wallet</a>
+    </div>
   </nav>
 
   <section>
-    <h2>Mes Projets</h2>
+    <h1>Mes Projets Web3</h1>
+    <p>Quelques dApps et smart contracts que j’ai build</p>
+
     <div class="grid">
       <div class="card">
         <h3>NFT Mint dApp</h3>
-        <p>Smart contract Solidity + frontend React</p>
+        <p>Collection de 10k NFT avec mint public + whitelist. Smart contract Solidity audité.</p>
+        <a href="#" target="_blank">GitHub →</a>
+        <a href="#" target="_blank">Live Demo →</a>
       </div>
+
       <div class="card">
-        <h3>DEX Simple</h3>
-        <p>Swap de tokens sur Uniswap V2</p>
+        <h3>Swap DEX</h3>
+        <p>Exchange décentralisé simple pour swapper ETH/USDC. Inspiré d’Uniswap V2.</p>
+        <a href="#" target="_blank">GitHub →</a>
+        <a href="#" target="_blank">Live Demo →</a>
+      </div>
+
+      <div class="card">
+        <h3>Staking Contract</h3>
+        <p>Contrat de staking avec rewards auto-compound. 500+ users, 200 ETH TVL.</p>
+        <a href="#" target="_blank">GitHub →</a>
+        <a href="#" target="_blank">Audit →</a>
       </div>
     </div>
   </section>
+
+  <footer>
+    <p>© 2026 TonNom.eth | <a href="https://github.com" style="color:#6366f1;">GitHub</a> | <a href="https://twitter.com" style="color:#6366f1;">Twitter</a></p>
+  </footer>
 </body>
 </html>
