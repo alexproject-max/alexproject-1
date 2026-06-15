@@ -3,31 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connect Wallet - Portfolio Web3</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Connect Wallet - TonNom</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0f0f0f;
+      color: #e5e5e5;
+      line-height: 1.6;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 10%;
+      border-bottom: 1px solid #222;
+    }
+    nav a { color: #e5e5e5; text-decoration: none; margin-left: 30px; }
+    nav a:hover { color: #6366f1; }
+    section { padding: 100px 10%; text-align: center; }
+    h1 { font-size: 3rem; margin-bottom: 20px; }
+   .btn {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    input {
+      padding: 14px;
+      width: 500px;
+      max-width: 90%;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #e5e5e5;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+   .info {
+      margin-top: 30px;
+      font-family: monospace;
+      color: #6366f1;
+    }
+    footer {
+      text-align: center;
+      padding: 60px 10%;
+      border-top: 1px solid #222;
+      opacity: 0.6;
+    }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
 </head>
 <body>
   <nav>
-    <a href="index.html">Accueil</a>
-    <a href="projects.html">Projets</a>
-    <a href="connect.html">Connect Wallet</a>
+    <div><a href="index.html" style="color:#e5e5e5;text-decoration:none;">TonNom.eth</a></div>
+    <div>
+      <a href="index.html#about">À propos</a>
+      <a href="projects.html">Projets</a>
+      <a href="connect.html">Wallet</a>
+    </div>
   </nav>
 
-  <section class="center">
-    <h2>Connecte ton Wallet</h2>
-    <button id="connectBtn">Connect MetaMask</button>
-    <p id="walletAddress"></p>
-    <p id="walletBalance"></p>
+  <section>
+    <h1>Connecte ton Wallet</h1>
+    <p>Teste la connexion MetaMask + lecture de smart contract</p>
+
+    <button class="btn" id="connectBtn">Connect MetaMask</button>
+    <div class="info" id="walletAddress"></div>
+    <div class="info" id="walletBalance"></div>
+
+    <input id="contractAddr" placeholder="Colle une adresse de contrat 0x...">
+    <br>
+    <button class="btn" id="readBtn">Lire le contrat</button>
+    <div class="info" id="contractResult"></div>
   </section>
 
-  <section class="center">
-    <h2>Lire un Smart Contract</h2>
-    <input id="contractAddr" placeholder="Adresse du contrat 0x..." style="padding:10px;width:400px;max-width:90%;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;">
-    <br><br>
-    <button id="readBtn">Lire la valeur</button>
-    <p id="contractResult"></p>
-  </section>
+  <footer>
+    <p>© 2026 TonNom.eth | <a href="https://github.com" style="color:#6366f1;">GitHub</a> | <a href="https://twitter.com" style="color:#6366f1;">Twitter</a></p>
+  </footer>
 
   <script>
     let signer;
@@ -41,12 +97,12 @@
         const accounts = await provider.send('eth_requestAccounts', []);
         signer = await provider.getSigner();
         const address = accounts[0];
-        document.getElementById('walletAddress').textContent = 'Adresse : ' + address;
+        document.getElementById('walletAddress').textContent = 'Adresse: ' + address;
         document.getElementById('connectBtn').textContent = 'Connecté ✓';
         document.getElementById('connectBtn').disabled = true;
         const balance = await provider.getBalance(address);
         const ethBalance = ethers.formatEther(balance);
-        document.getElementById('walletBalance').textContent = 'Solde : ' + parseFloat(ethBalance).toFixed(4) + ' ETH';
+        document.getElementById('walletBalance').textContent = 'Solde: ' + parseFloat(ethBalance).toFixed(4) + ' ETH';
       } catch (err) {
         console.error(err);
       }
@@ -65,9 +121,9 @@
         const abi = ["function getNumber() view returns (uint256)"];
         const contract = new ethers.Contract(contractAddress, abi, signer);
         const result = await contract.getNumber();
-        document.getElementById('contractResult').textContent = 'Résultat : ' + result.toString();
+        document.getElementById('contractResult').textContent = 'Résultat: ' + result.toString();
       } catch (err) {
-        document.getElementById('contractResult').textContent = 'Erreur : ' + err.message;
+        document.getElementById('contractResult').textContent = 'Erreur: ' + err.message;
         console.error(err);
       }
     };
